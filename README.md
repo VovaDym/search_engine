@@ -44,7 +44,7 @@
 
 		cd ..
 		.\ serchengine.exe
-
+		
 Для запуска Unit-testов  необходимо в папке build, ранее созданной выполнить следующее:
 
 	        cmake --build . --config Release --target Google_Tests_All_Test
