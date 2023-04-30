@@ -26,6 +26,7 @@
 - [JSON for MODERN C++](https://github.com/nlohmann/json)
 - [A C++17 Thread Pool for High-Performance Scientific Computing](https://github.com/bshoshany/thread-pool)
 - [GoogleTest](https://github.com/google/googletest)
+
 ### <a name="Сборка">Сборка приложения</a>
 Сборка и проверка функционирования приложения производилась под управлением операционной системе Wndows10.
 Проверена сборка на:
