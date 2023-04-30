@@ -1,7 +1,0 @@
-# ninja log v5
-0	7082	7045614443919233	src/CMakeFiles/searchengine.dir/invertedindex.cpp.obj	70b224c143f71a57
-77	9545	7045614468627976	src/CMakeFiles/searchengine.dir/searchengine.cpp.obj	2207646982e3b984
-9547	10767	7045614480967372	src/CMakeFiles/searchengine.dir/exception.cpp.obj	88c5a2130d6f2962
-7090	11781	7045614491048697	src/CMakeFiles/searchengine.dir/searchserver.cpp.obj	5921858969be4d62
-38	13350	7045614506766327	src/CMakeFiles/searchengine.dir/converterJSON.cpp.obj	93bd51e1b31a3b41
-13350	15724	7045614530480376	C:/Diplom/search_engine/searchengine.exe	18e72ee2e79d8267
