@@ -1,0 +1,14 @@
+# Target labels
+ json-populate
+# Source files and their labels
+C:/Diplom/search_engine/cmake-build-debug/_deps/json-subbuild/CMakeFiles/json-populate
+C:/Diplom/search_engine/cmake-build-debug/_deps/json-subbuild/CMakeFiles/json-populate.rule
+C:/Diplom/search_engine/cmake-build-debug/_deps/json-subbuild/CMakeFiles/json-populate-complete.rule
+C:/Diplom/search_engine/cmake-build-debug/_deps/json-subbuild/json-populate-prefix/src/json-populate-stamp/json-populate-build.rule
+C:/Diplom/search_engine/cmake-build-debug/_deps/json-subbuild/json-populate-prefix/src/json-populate-stamp/json-populate-configure.rule
+C:/Diplom/search_engine/cmake-build-debug/_deps/json-subbuild/json-populate-prefix/src/json-populate-stamp/json-populate-download.rule
+C:/Diplom/search_engine/cmake-build-debug/_deps/json-subbuild/json-populate-prefix/src/json-populate-stamp/json-populate-install.rule
+C:/Diplom/search_engine/cmake-build-debug/_deps/json-subbuild/json-populate-prefix/src/json-populate-stamp/json-populate-mkdir.rule
+C:/Diplom/search_engine/cmake-build-debug/_deps/json-subbuild/json-populate-prefix/src/json-populate-stamp/json-populate-patch.rule
+C:/Diplom/search_engine/cmake-build-debug/_deps/json-subbuild/json-populate-prefix/src/json-populate-stamp/json-populate-test.rule
+C:/Diplom/search_engine/cmake-build-debug/_deps/json-subbuild/json-populate-prefix/src/json-populate-stamp/json-populate-update.rule
