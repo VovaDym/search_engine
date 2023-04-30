@@ -27,10 +27,12 @@
 * Microsoft Visual Studion 17 2022
 * minGW64 v6.0
 
-  	mkdir build
-  	cd build
-  	cmake ..
-  	cmake --build . --config Release --target searchengine
+Запуск приложения из командной строки
+
+  	        mkdir build
+  	        cd build
+  	        cmake ..
+  	        cmake --build . --config Release --target searchengine
 
 Для работы обязательно нужно что бы .json файлы находились в одной директории с исполняемым файлом,
 поэтому скопируйте исполняемый файл в корневую дерикторию проекта:
@@ -57,21 +59,20 @@
 
 Пример файла конфигурации приведён ниже:
 
-    {
-        "config": {
-	    "name": "SkillboxSearchEngine",
-	    "version": "0.1"
-            "max_responses": 5,         
+                {
+                    "config": {
+	                "name": "SkillboxSearchEngine",
+	                "version": "0.1"
+                        "max_responses": 5,         
+                        
+                    },
+                    "files": [
+                        "Resource\\file001.txt",
+                        "Resource\\file002.txt",
+                        "Resource\\file003.txt"
+                    ]
+                }
             
-        },
-        "files": [
-            "Resource\\file001.txt",
-            "Resource\\file002.txt",
-            "Resource\\file003.txt"
-        ]
-    }
-
-, где
 **name** - отображаемое имя приложения при запуске.
 **version** - версия приложения/JSON конфигурационного файла, (должна совпадать с текущей версией поисковой программы).
 **max_responses** - количество отображаемых ответов в файле answers.json  
@@ -82,15 +83,14 @@
 
 Для задания запросов поиска необходимо сформировать файл requests.json, Формат и пример файла requests.json приведён ниже.
 
-        {
-        "requests":[
-            "milk water", 
-            "sugar", 
-            "milk water sugar"
-            ]
-        }
-
-, где  
+                 {
+                     "requests":[
+                           "milk water", 
+                           "sugar", 
+                           "milk water sugar"
+                      ]
+                 }
+  
 **requests** - индетификатор запросов (обязательное поле);  
 "***milk water***", "***sugar***", "***milk water sugar***" - поисковые запросы.
 
@@ -107,9 +107,9 @@
 
 Запуск приложения выполняется запуском файла searchengine.exe на исполнение. После запуска приложения в консоли будет отображена следующая информация:
 
-         Start SkillboxSearchEngine
-         Version: 0.1
-         Max request limit: 5
+                   Start SkillboxSearchEngine
+                   Version: 0.1
+                   Max request limit: 5
 
 В случае возникновения нештатных ситуаций будет выведены дополнительные сообщения, и возможно досрочно прекращена выполнение программы.
 После удачного завершения работы программы ( Process finished with exit code 0), в директории запуска программы будет создан файл answers.json.
@@ -119,22 +119,22 @@
 Результатом работы приложения является созданный файл answer.json
 Пример файла ниже:
 
-    {
-        "answers": {
-            "request001": {
-                "result": false
-            },
-            "request002": {
-                "relevance": [
-                    {
-                        "docID": 4,
-                        "rank": 1.0
-                    }
-                ],
-                "result": true
-            }
-     }
-
+                   {
+                       "answers": {
+                           "request001": {
+                               "result": false
+                           },
+                           "request002": {
+                               "relevance": [
+                                   {
+                                       "docID": 4,
+                                       "rank": 1.0
+                                   }
+                               ],
+                               "result": true
+                           }
+                   }
+               
 * **answers** — базовое поле в этом файле, которое содержит ответы на запросы.
 * **request001 … 002** — идентификатор запроса, по которому сформирован ответ.
 * **result** – результат поиска запроса. Если он принимает значение ***true***, значит по
@@ -147,8 +147,8 @@
       "file001.txt", для данного файла docid будет равен 0
       "file002.txt"  для данного файла docid будет равен 1
       ]
-    * **<ранг ответа>(“rank”)** — ранг или поисковый рейтинг. Это число показывает,
+    * **<ранг ответа>(“rank”)** — ранг или релевантность. Это число показывает,
       насколько документ подходит для заданного запроса. В ответе id документов
-      располагаются в порядке уменьшения поискового рейтинга.
+      располагаются в порядке уменьшения релевантности.
 
 
