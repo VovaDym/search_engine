@@ -43,7 +43,7 @@
 После чего можно запустить serchengine.exe
 
 		cd ..
-		.\ serchengine.exe
+		start serchengine.exe
 		
 Для запуска Unit-testов, в папке build, необходимо выполнить следующее:
 
@@ -51,7 +51,7 @@
 	        cd ..\\Release
 	        copy Google_Tests_All_Test.exe ..
 	        cd ..
-	        .\ Google_Tests_All_Test.exe
+	        start Google_Tests_All_Test.exe
 
 ### <a name="Конфигурирование">Конфигурирование приложения</a>
 Основные настройки/конфигурация программы содержится в файле config.json.
