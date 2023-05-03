@@ -37,7 +37,6 @@ public:
     * @return
     */
     std::vector<std::string> GetFileNames();
-//    std::vector<std::string> GetTextDocuments();
     /**
     * Метод считывает поле max_responses для определения предельного
     * количества ответов на один запрос
