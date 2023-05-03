@@ -8,25 +8,19 @@ void ConverterJSON::ReadJsonFile(const std::string &fileName)
     mFile.open(fileName, std::ios::in);
     if (!mFile.is_open())
     {
-        throw ExceptionError("Unable to read file " + fileName);
+        std::cerr << "Error!Unable to read file "  + fileName << std::endl;
     }
     else
     {
-        try {
-            if(fileName == mRequestsFileName)
-            {
-                mFile >> requestJSON;
-                mFile.close();
-            }
-            else if (fileName == mConfigFileName)
-            {
-                mFile >> configJSON;
-                mFile.close();
-            }
-        }
-        catch (...)
+        if(fileName == mRequestsFileName)
         {
-            throw ExceptionError("File " + fileName + " corrupted");
+            mFile >> requestJSON;
+            mFile.close();
+        }
+        else if (fileName == mConfigFileName)
+        {
+            mFile >> configJSON;
+            mFile.close();
         }
     }
 }
@@ -34,25 +28,20 @@ void ConverterJSON::ReadJsonFile(const std::string &fileName)
 std::vector<std::string> ConverterJSON::GetRequests()
 {
     ReadJsonFile(mRequestsFileName);
-    try {
-        if (requestJSON["requests"].empty() || requestJSON.empty())
-        {
-            std::cout << "WARNING!!: Request file empty" << std::endl;
-            return std::vector<std::string>();
-        }
-        auto endRequestsList = requestJSON["requests"].end();
-        if (requestJSON["requests"].size() > MAX_REQUESTS)
-        {
-            std::cout << "WARNING!!: To many requests" << std::endl;
-            endRequestsList = requestJSON["requests"].begin() + MAX_REQUESTS;
-        }
-        return std::vector<std::string>(requestJSON["requests"].begin(), endRequestsList);
-    }
-    catch (...)
+
+    if (requestJSON["requests"].empty() || requestJSON.empty())
     {
-        throw ExceptionError("Error config in " + mConfigFileName + " file.");
+        std::cout << "WARNING!!: Request file empty" << std::endl;
+        return std::vector<std::string>();
     }
-};
+    auto endRequestsList = requestJSON["requests"].end();
+    if (requestJSON["requests"].size() > MAX_REQUESTS)
+    {
+        std::cout << "WARNING!!: To many requests" << std::endl;
+        endRequestsList = requestJSON["requests"].begin() + MAX_REQUESTS;
+    }
+    return std::vector<std::string>(requestJSON["requests"].begin(), endRequestsList);
+}
 
 std::string ConverterJSON::ReadDocument(const std::string &fileName) {
     std::string currWord, currTextDocument;
@@ -103,66 +92,24 @@ std::string ConverterJSON::ReadDocument(const std::string &fileName) {
     return currTextDocument;
 }
 
-//std::vector<std::string> ConverterJSON:: GetTextDocuments()
-//{
-//
-//    std::vector <std::string> fileNamesDoc;
-//    std::vector <std::string> textDocuments;
-//    ReadJsonFile(mConfigFileName);
-//
-//    if(configJSON["config"]["version"] != VERSION_APP)
-//    {
-//        configJSON.clear();
-//    }
-//
-//    if (configJSON["files"].empty() || configJSON.empty())
-//    {
-//        std::cout << "WARNING!!: Config file empty" << std::endl;
-//        return textDocuments;
-//    }
-//
-//
-//    fileNamesDoc = std::vector<std::string>(configJSON["files"].begin(), configJSON["files"].end());
-//    for (int i = 0;i <  fileNamesDoc.size(); i++)
-//    {
-//
-//        textDocuments.push_back(ReadDocument(fileNamesDoc[i]));
-//
-//    }
-//
-//    return textDocuments;
-//}
-
 std::vector<std::string> ConverterJSON::GetFileNames() {
     if(configJSON["config"]["version"] != VERSION_APP)
     {
-       configJSON.clear();
+        configJSON.clear();
     }
 
     if (configJSON.empty()) {
         std::cout << "WARNING!!: List of file names is empty" << std::endl;
         return std::vector<std::string>();
     }
-    try {
-        return std::vector<std::string>(configJSON["files"].begin(), configJSON["files"].end());
-    } catch (...)
-    {
-        throw ExceptionError("Error config in " + mConfigFileName + " file.");
-    }
+    return std::vector<std::string>(configJSON["files"].begin(), configJSON["files"].end());
 }
 
 int ConverterJSON::GetResponsesLimit()
 {
     if (!configJSON.empty())
     {
-        try
-        {
-            return configJSON["config"]["max_responses"];
-        }
-        catch (...)
-        {
-            throw ExceptionError("Error config in " + mConfigFileName + " file.");
-        }
+        return configJSON["config"]["max_responses"];
     }
     else
     {
@@ -177,19 +124,12 @@ void ConverterJSON::WriteJsonFile(const std::string &fileName, nlohmann::json &j
     mFile.open(mAnswerFileName, std::ios::out);
     if (!mFile.is_open())
     {
-        throw ExceptionError("Unable to create file answers.json");
+        std::cerr << "Unable to create file answers.json" << std::endl;
     }
     else
     {
-        try
-        {
-            mFile << jsonToWrite.dump(SPACES_SEPARATOR);
-            mFile.close();
-        }
-        catch (...)
-        {
-            throw ExceptionError("Unable to write file answers.json");
-        }
+        mFile << jsonToWrite.dump(SPACES_SEPARATOR);
+        mFile.close();
     }
 }
 
@@ -202,7 +142,7 @@ nlohmann::json ConverterJSON::CreatAnswerJson(const std::vector<std::vector<Rela
         int response = 0;
         nlohmann::json relevance = nlohmann::json::object_t();
         std::string strNumberRequest = "request" + std::string(3 - std::to_string(numberRequest).size(), '0')
-                                                 + std::to_string(numberRequest);
+                                       + std::to_string(numberRequest);
         if (requestAnswer.empty())
         {
             answerJSON["answers"][strNumberRequest]["result"] = false;

@@ -1,7 +1,3 @@
-//
-// Created by lebed on 29.03.2023.
-//
-
 #ifndef SEARCH_ENGINE_CONVERTERJSON_H
 #define SEARCH_ENGINE_CONVERTERJSON_H
 
@@ -11,7 +7,6 @@
 #include <fstream>
 #include "config.h"
 #include "nlohmann/json.hpp"
-#include "exception.h"
 #include "searchserver.h"
 
 /**

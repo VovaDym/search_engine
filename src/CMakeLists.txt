@@ -2,10 +2,6 @@ cmake_minimum_required(VERSION 3.25)
 project(searchengine VERSION 0.1)
 
 
-
-
-
-
 include(FetchContent)
 FetchContent_Declare(json URL https://github.com/nlohmann/json/releases/download/v3.10.5/json.tar.xz)
 FetchContent_MakeAvailable(json)
@@ -41,7 +37,7 @@ add_executable(searchengine searchengine.cpp
                             converterJSON.cpp
                             invertedindex.cpp
                             searchserver.cpp
-                            exception.cpp )
+        )
 
 
 target_include_directories (searchengine PUBLIC ${MY_INCLUDE_PATH})

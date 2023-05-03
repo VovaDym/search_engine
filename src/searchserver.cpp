@@ -1,6 +1,6 @@
 #include "searchserver.h"
 
-    SearchServer::SearchServer(InvertedIndex &idx) : mIndex(idx) {};
+SearchServer::SearchServer(InvertedIndex &idx) : mIndex(idx) {};
 
 std::vector<std::vector<RelativeIndex>> SearchServer::Search(const std::vector<std::string> &queriesInput)
 {

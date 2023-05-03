@@ -1,7 +1,3 @@
-//
-// Created by lebed on 24.04.2023.
-//
-
 #ifndef SEARCH_ENGINE_INVERTEDINDEX_H
 #define SEARCH_ENGINE_INVERTEDINDEX_H
 
@@ -48,29 +44,16 @@ public:
     * @return возвращает подготовленный список с частотой слов
     */
     std::vector<Entry> GetWordCount(const std::string& word);
-    /**
-    * Метод заполняет елементами переменную docs
-    */
-    void SetInDocs(std::vector<std::string> st)
-    {
-        docs = st;
-    }
-    /**
-    * Метод показывает значение переменной docs
-    */
-    std::vector<std::string> GetDocs()
-    {
-        return docs;
-    }
+
     /**
     * Метод делит элемент вектора docs на слова
     */
     std::vector<std::string> SplitIntoWords(const std::string &text);
-    std::map<std::string, std::vector<Entry>> freqDictionaryAllDocs;
+
 private:
     std::mutex *lockDictionary = nullptr;
     std::vector <std::string> docs;
-
+    std::map<std::string, std::vector<Entry>> freqDictionaryAllDocs;
 
     std::map<size_t, int> lengthInWordDoc; // docId, Length of word
 

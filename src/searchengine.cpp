@@ -3,7 +3,6 @@
 #include "converterJSON.h"
 #include "invertedindex.h"
 #include "searchserver.h"
-#include "exception.h"
 #include "config.h"
 
 int main()
@@ -11,19 +10,14 @@ int main()
     ConverterJSON converterJson;
     InvertedIndex invertedIndex;
 
-    try {
-        if (!converterJson.IsValidVersion())
-        {
-            std::cerr << "Error!Incorrect application version!" << std::endl;
-            return 0;
-        }
-        invertedIndex.UpdateDocumentBase(converterJson.GetFileNames());
-    }
-    catch (ExceptionError &e)
+
+    if (!converterJson.IsValidVersion())
     {
-        std::cerr << e.what() << std::endl;
-        exit(0);
+        std::cerr << "Error!Incorrect application version!" << std::endl;
+        return 0;
     }
+    invertedIndex.UpdateDocumentBase(converterJson.GetFileNames());
+
     converterJson.GetInfoProject();
     SearchServer searchServer(invertedIndex);
     searchServer.SetMaxRequests(converterJson.GetResponsesLimit());
@@ -33,6 +27,10 @@ int main()
 
     return 0;
 }
+
+
+
+
 
 
 

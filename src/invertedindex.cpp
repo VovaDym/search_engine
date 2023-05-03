@@ -26,7 +26,7 @@ std::string InvertedIndex::ReadDocument(const std::string &fileName)
         file.seekg(0, std::ios::end);
         std::streampos lengthFile = file.tellg();
         file.seekg(0, std::ios::beg);
-        
+
         std::vector<char> fileBuff(lengthFile);
         file.read(&fileBuff[0], lengthFile);
         file.close();
@@ -61,11 +61,11 @@ std::string InvertedIndex::ReadDocument(const std::string &fileName)
     return currTextDocument;
 }
 
-std::vector<std::string> InvertedIndex::SplitIntoWords(const std::string &text) 
+std::vector<std::string> InvertedIndex::SplitIntoWords(const std::string &text)
 {
     std::vector<std::string> words;
     std::string word;
-    for (const char c : text) 
+    for (const char c : text)
     {
         if (c == ' ') {
             if (!word.empty()) {
@@ -105,43 +105,32 @@ void InvertedIndex::ToIndexDoc(const size_t &docId, const std::string &docFileNa
             }
         }
     }
-
-    if (lockDictionary != nullptr)
-    {
-        // если нет указателя, значит mutex не нужен
-        lockDictionary->lock();
-        lengthInWordAllDocs += words.size();
-        lengthInWordDoc[docId] = words.size();
-        func_merge(freqDictionaryAllDocs, freqDictionaryOneDoc); // произведём слияние словарей
-        lockDictionary->unlock();
-    }
-    else
-    {
-        lengthInWordAllDocs += words.size();
-        lengthInWordDoc[docId] = words.size();
-        func_merge(freqDictionaryAllDocs, freqDictionaryOneDoc); // произведём слияние словарей
-    }
+    lockDictionary->lock();
+    lengthInWordAllDocs += words.size();
+    lengthInWordDoc[docId] = words.size();
+    func_merge(freqDictionaryAllDocs, freqDictionaryOneDoc); // произведём слияние словарей
+    lockDictionary->unlock();
 }
 
-void InvertedIndex::UpdateDocumentBase(const std::vector<std::string> &fileNames) 
+void InvertedIndex::UpdateDocumentBase(const std::vector<std::string> &fileNames)
 {
     freqDictionaryAllDocs.clear();
     lockDictionary = new std::mutex;
-    if (fileNames.empty()) 
+    if (fileNames.empty())
     {
         std::cerr << "WARNING: List of filenames is empty." << std::endl;
         return;
     }
-    
-    BS::thread_pool pool(2);
+
+    BS::thread_pool pool;
 
     size_t doc_id = 0;
     for (const auto &fileName:fileNames)
     {
         pool.push_task([this, doc_id, fileName]
-        {
-            ToIndexDoc(doc_id, fileName);
-        });
+                       {
+                           ToIndexDoc(doc_id, fileName);
+                       });
 
         doc_id++;
     }
