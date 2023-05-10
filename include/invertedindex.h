@@ -46,7 +46,7 @@ public:
     std::vector<Entry> GetWordCount(const std::string& word);
 
     /**
-    * Метод делит элемент вектора docs на слова
+    * Метод делит элемент вектора fileNames на слова
     */
     std::vector<std::string> SplitIntoWords(const std::string &text);
 
