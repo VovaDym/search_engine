@@ -52,7 +52,7 @@ public:
 
 private:
     std::mutex *lockDictionary = nullptr;
-    std::vector <std::string> docs;
+    
     std::map<std::string, std::vector<Entry>> freqDictionaryAllDocs;
 
     std::map<size_t, int> lengthInWordDoc; // docId, Length of word
