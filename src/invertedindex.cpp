@@ -106,8 +106,6 @@ void InvertedIndex::ToIndexDoc(const size_t &docId, const std::string &docFileNa
         }
     }
     lockDictionary->lock();
-    lengthInWordAllDocs += words.size();
-    lengthInWordDoc[docId] = words.size();
     func_merge(freqDictionaryAllDocs, freqDictionaryOneDoc); // произведём слияние словарей
     lockDictionary->unlock();
 }
