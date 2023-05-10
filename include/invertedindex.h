@@ -55,10 +55,6 @@ private:
     
     std::map<std::string, std::vector<Entry>> freqDictionaryAllDocs;
 
-    std::map<size_t, int> lengthInWordDoc; // docId, Length of word
-
-    size_t lengthInWordAllDocs = 0;
-
     /**
     * Метод расчитывает колличество искомых слов в документе
     * @param docId - идентификатор документа
