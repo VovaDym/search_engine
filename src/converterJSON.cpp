@@ -140,7 +140,7 @@ nlohmann::json ConverterJSON::CreatAnswerJson(const std::vector<std::vector<Rela
     for (auto &requestAnswer:answers)
     {
         int response = 0;
-        nlohmann::json relevance = nlohmann::json::object_t();
+        
         std::string strNumberRequest = "request" + std::string(3 - std::to_string(numberRequest).size(), '0')
                                        + std::to_string(numberRequest);
         if (requestAnswer.empty())
