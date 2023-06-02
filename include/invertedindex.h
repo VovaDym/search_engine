@@ -24,8 +24,6 @@ struct Entry
         return (doc_id == other.doc_id && count == other.count);
     }
     Entry() = default;
-
-    Entry(size_t docID, size_t Count) : doc_id(docID), count(Count) {};
 };
 class InvertedIndex
 {
