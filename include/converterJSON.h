@@ -49,10 +49,12 @@ public:
     */
     std::vector<std::string> GetRequests();
     /**
+    * Запись из текстового файла в string с подсчётом слов и символов
+    */
+    std::string ReadDocument(const std::string &fileName);
+    /**
     * Запись в файл answers.json результаты поисковых запросов
     */
-
-    std::string ReadDocument(const std::string &fileName);
     void PutAnswers(const std::vector<std::vector<RelativeIndex>> &answers);
     /**
     * Метот создания answerJSON файла
