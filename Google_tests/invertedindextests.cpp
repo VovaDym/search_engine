@@ -14,7 +14,7 @@ void TestInvertedIndexFunctionality( const std::vector<std::string> &docs,
                                      const std::vector<std::vector<Entry>> &expected)
 {
     std::vector<std::vector<Entry>> result;
-    std::vector<std::string> fileNames({});
+    std::vector<std::string> fileNames;
     InvertedIndex idx;
 
     std::fstream file;
