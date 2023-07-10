@@ -5,7 +5,7 @@
     <img src="Resource/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-<h2 align="center">"SkillboxSearchEngine"</h2>
+<h2 align="center">"SearchEngine"</h2>
 
   <p align="center">
     Приложение локального поискового движка по файлам
